@@ -1,6 +1,7 @@
-package main
+package jsonSchema
 
 import (
+	"encoding/json"
 	"reflect"
 	"testing"
 )
@@ -59,4 +60,18 @@ func TestGetSchemaWithAggregatedReferences(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestDeepSearchParent(t *testing.T) {
+	jsonMap := make(map[string]interface{})
+	json.Unmarshal([]byte(data), &jsonMap)
+	res := DeepSearchParent("color", jsonMap)
+
+	println(res)
+}
+
+func TestDeepValidate(t *testing.T) {
+	jsonMap := make(map[string]interface{})
+	json.Unmarshal([]byte(data), &jsonMap)
+	println(DeepValidate(jsonMap))
 }
