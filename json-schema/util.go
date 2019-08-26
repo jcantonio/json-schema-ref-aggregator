@@ -49,7 +49,7 @@ var validAttributeName = regexp.MustCompile(`^[a-zA-Z0-9_]*$`)
 
 func validate(parentPath string, jsonMap map[string]interface{}) error {
 	for k, v := range jsonMap {
-		if !validAttributeName.MatchString(k) {
+		if k != "$ref" && !validAttributeName.MatchString(k) {
 			return fmt.Errorf("Invalid attribute attributeName: %s", k)
 		}
 		switch vv := v.(type) {
