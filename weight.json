@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "NetWeight": {
+      "description": "Net weight",
+      "$ref": "file:///value.json"
+    },
+    "TareWeight": {
+      "description": "Weight of empty packaging, pallet or ULD",
+      "$ref": "file:///value.json"
+    },
+    "GrossWeight": {
+      "description": "Total weight",
+      "$ref": "file:///value.json"
+    }
+  }
+}
