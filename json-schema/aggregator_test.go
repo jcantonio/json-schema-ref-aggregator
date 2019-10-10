@@ -2,6 +2,7 @@ package jsonSchema
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"reflect"
 	"testing"
 )
@@ -63,14 +64,22 @@ func TestGetSchemaWithAggregatedReferences(t *testing.T) {
 }
 
 func TestDeepSearchParent(t *testing.T) {
+	data, err := ioutil.ReadFile("../weight-full.json")
+	if err != nil {
+		t.Error(err)
+		return
+	}
 	jsonMap := make(map[string]interface{})
-	json.Unmarshal([]byte(data), &jsonMap)
-	res := DeepSearchParent("color", jsonMap)
-
+	json.Unmarshal(data, &jsonMap)
+	res := DeepSearchParent("description", jsonMap)
 	println(res)
 }
 
 func TestDeepValidate(t *testing.T) {
+	data, err := ioutil.ReadFile("../weight-full.json")
+	if err != nil {
+		t.Error(err)
+	}
 	jsonMap := make(map[string]interface{})
 	json.Unmarshal([]byte(data), &jsonMap)
 	println(DeepValidate(jsonMap))
